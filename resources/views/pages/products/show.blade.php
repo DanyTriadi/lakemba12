@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $product->name . ' - Lakemba 12')
+@section('title', $product->name . ' - Lakemba 12 Toko Plastik & Bahan Kue')
 @section('meta_description', Str::limit($product->description, 150))
 
 @section('content')
@@ -10,7 +10,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs text-stone-500 flex items-center gap-2">
         <a href="{{ route('home') }}" class="hover:text-brand-500">Beranda</a>
         <span>/</span>
-        <a href="{{ route('products.index') }}" class="hover:text-brand-500">Menu</a>
+        <a href="{{ route('products.index') }}" class="hover:text-brand-500">Katalog Produk</a>
         <span>/</span>
         <a href="{{ route('products.index', ['category' => $product->category->slug]) }}" class="hover:text-brand-500">{{ $product->category->name }}</a>
         <span>/</span>
@@ -34,8 +34,8 @@
             <!-- Right: Information & Actions -->
             <div class="space-y-6">
                 <div>
-                    <span class="text-xs uppercase tracking-widest text-amberGold font-bold">Menu Pilihan Barista</span>
-                    <h1 class="font-serif text-3xl sm:text-4xl font-extrabold text-stone-900 mt-1">{{ $product->name }}</h1>
+                    <span class="text-xs uppercase tracking-widest text-amberGold font-bold">Produk Terverifikasi Food Grade / Resmi</span>
+                    <h1 class="font-serif text-2xl sm:text-3xl font-extrabold text-stone-900 mt-1">{{ $product->name }}</h1>
                     <div class="flex items-center gap-3 mt-3">
                         <div class="flex items-center text-amber-500 text-xs">
                             <i class="fa-solid fa-star"></i>
@@ -44,22 +44,23 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                         </div>
-                        <span class="text-xs text-stone-500">Stok Tersedia: <strong>{{ $product->stock }} porsi</strong></span>
+                        <span class="text-xs text-stone-500">Stok Siap Kirim: <strong>{{ $product->stock }} unit</strong></span>
                     </div>
                 </div>
 
                 <!-- Price Box -->
                 <div class="p-4 bg-brand-50/60 rounded-2xl border border-brand-100">
-                    <span class="text-xs text-stone-500 block">Harga Spesial</span>
+                    <span class="text-xs text-stone-500 block">Harga Eceran Toko</span>
                     <span class="font-serif text-3xl font-extrabold text-brand-500">
                         Rp {{ number_format($product->price, 0, ',', '.') }}
                     </span>
+                    <span class="text-[11px] text-stone-500 block mt-0.5">*Tersedia harga khusus grosir untuk pembelian dus/bal</span>
                 </div>
 
                 <!-- Description -->
                 <div class="text-stone-600 text-sm leading-relaxed space-y-2">
                     <p>{{ $product->description }}</p>
-                    <p class="text-xs text-stone-500 italic">*Dibuat segar sesuai pesanan Anda dengan higienitas terjamin.</p>
+                    <p class="text-xs text-stone-500 italic">*Barang dicek dan dikemas aman dengan bubble wrap / dus saat pengiriman.</p>
                 </div>
 
                 <!-- Quantity & Add to Cart -->
@@ -71,15 +72,15 @@
                     </div>
 
                     <button onclick="addMultipleToCart()" class="w-full sm:flex-grow py-3.5 px-6 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-bag-shopping"></i>
+                        <i class="fa-solid fa-basket-shopping"></i>
                         <span>Masukkan ke Keranjang</span>
                     </button>
                 </div>
 
-                <!-- Fast WhatsApp Inquiry -->
+                <!-- Fast WhatsApp Grosir Inquiry -->
                 <div class="pt-2">
-                    <a href="https://wa.me/6281234567890?text=Halo%20Lakemba%2012,%20saya%20tertarik%20dengan%20menu%20{{ urlencode($product->name) }}" target="_blank" class="text-xs font-bold text-emerald-600 hover:text-emerald-700 flex items-center gap-1.5">
-                        <i class="fa-brands fa-whatsapp text-sm"></i> Ada pertanyaan kustomisasi susu atau gula? Chat Barista
+                    <a href="https://wa.me/6281234567890?text=Halo%20Lakemba%2012,%20saya%20mau%20tanya%20harga%20grosir%20dus%20untuk%20produk%20{{ urlencode($product->name) }}" target="_blank" class="text-xs font-bold text-emerald-600 hover:text-emerald-700 flex items-center gap-1.5">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Ingin beli kuantiti dus/bal partai besar? Hubungi Admin Grosir
                     </a>
                 </div>
 
@@ -90,7 +91,7 @@
         <!-- Related Products -->
         @if($relatedProducts->isNotEmpty())
             <div class="mt-20">
-                <h3 class="font-serif text-2xl font-bold text-stone-900 mb-8">Menu Serupa yang Mungkin Anda Sukai</h3>
+                <h3 class="font-serif text-2xl font-bold text-stone-900 mb-8">Produk Sejenis Lainnya</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                     @foreach($relatedProducts as $rel)
                         <div class="bg-white rounded-2xl overflow-hidden border border-stone-200/80 shadow-sm p-4 flex gap-4 items-center group">
@@ -103,7 +104,7 @@
                                     Rp {{ number_format($rel->price, 0, ',', '.') }}
                                 </span>
                                 <button onclick="addToCart({{ $rel->id }}, '{{ addslashes($rel->name) }}', {{ $rel->price }}, '{{ $rel->image }}')" class="mt-2 text-[11px] font-bold text-brand-500 hover:underline">
-                                    + Tambah
+                                    + Beli
                                 </button>
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Kelola Menu Produk - Lakemba 12')
-@section('page_title', 'Katalog Menu & Minuman')
+@section('title', 'Kelola Produk Plastik & Bahan Kue - Lakemba 12')
+@section('page_title', 'Katalog Produk Plastik & Bahan Kue')
 
 @section('admin_content')
 
@@ -9,10 +9,10 @@
     
     <!-- Top Action: Add Product Button -->
     <div class="flex items-center justify-between">
-        <p class="text-xs text-stone-500">Kelola daftar sajian kopi, artisan drink, dan bakery yang tampil pada menu pelanggan.</p>
+        <p class="text-xs text-stone-500">Kelola daftar kemasan plastik food grade, cup, dan bahan baku kue yang tampil pada katalog toko.</p>
         <button onclick="toggleModal('add-product-modal', true)" class="px-4 py-2.5 bg-brand-500 hover:bg-brand-600 text-white rounded-xl text-xs font-bold uppercase tracking-wider shadow-sm flex items-center gap-2">
             <i class="fa-solid fa-plus"></i>
-            <span>Tambah Menu Baru</span>
+            <span>Tambah Produk Baru</span>
         </button>
     </div>
 

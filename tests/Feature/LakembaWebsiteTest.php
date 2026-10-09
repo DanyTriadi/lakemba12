@@ -25,14 +25,14 @@ class LakembaWebsiteTest extends TestCase
         $response = $this->get('/');
         $response->assertStatus(200);
         $response->assertSee('LAKEMBA 12');
-        $response->assertSee('Harmoni Cita Rasa');
+        $response->assertSee('Kemasan Plastik');
     }
 
     public function test_menu_catalog_is_accessible(): void
     {
         $response = $this->get('/menu');
         $response->assertStatus(200);
-        $response->assertSee('Daftar Menu Lakemba 12');
+        $response->assertSee('Daftar Produk Plastik');
     }
 
     public function test_product_detail_page_is_accessible(): void
@@ -49,7 +49,7 @@ class LakembaWebsiteTest extends TestCase
     {
         $resAbout = $this->get('/about');
         $resAbout->assertStatus(200);
-        $resAbout->assertSee('Di Balik Setiap Cangkir Lakemba 12');
+        $resAbout->assertSee('Tentang Lakemba 12');
 
         $resGallery = $this->get('/gallery');
         $resGallery->assertStatus(200);
@@ -59,17 +59,17 @@ class LakembaWebsiteTest extends TestCase
     public function test_contact_submission_stores_message(): void
     {
         $response = $this->post('/contact', [
-            'name' => 'Budi Santoso',
-            'email' => 'budi@test.com',
+            'name' => 'Dapur Rina Bakery',
+            'email' => 'rina@bakery.com',
             'phone' => '081299998888',
-            'subject' => 'Reservasi Meja',
-            'message' => 'Halo Barista, saya ingin reservasi meja sore ini untuk 2 orang.',
+            'subject' => 'Pemesanan Grosir Partai Besar (Dus/Bal)',
+            'message' => 'Halo Admin Lakemba 12, saya ingin menanyakan harga grosir thinwall 650ml jika pesan 10 dus sekaligus.',
         ]);
 
         $response->assertSessionHas('success');
         $this->assertDatabaseHas('contacts', [
-            'email' => 'budi@test.com',
-            'name' => 'Budi Santoso',
+            'email' => 'rina@bakery.com',
+            'name' => 'Dapur Rina Bakery',
         ]);
     }
 
@@ -79,26 +79,26 @@ class LakembaWebsiteTest extends TestCase
         $this->assertNotNull($product, 'Product should exist in database');
 
         $response = $this->post('/orders', [
-            'customer_name' => 'Aditya Rizky',
-            'customer_email' => 'aditya@test.com',
+            'customer_name' => 'Siti Aminah Catering',
+            'customer_email' => 'siti@catering.com',
             'customer_phone' => '081234567890',
-            'shipping_address' => 'Dine in Meja 12',
+            'shipping_address' => 'Jl. Kenanga No. 45, Dapur Katering Siti',
             'payment_method' => 'transfer_bank',
-            'notes' => 'Less sugar please',
+            'notes' => 'Tolong di-packing aman dengan bubble wrap ya',
             'items' => [
                 [
                     'product_id' => $product->id,
-                    'quantity' => 2,
+                    'quantity' => 3,
                 ],
             ],
         ]);
 
         $this->assertDatabaseHas('orders', [
-            'customer_name' => 'Aditya Rizky',
-            'customer_email' => 'aditya@test.com',
+            'customer_name' => 'Siti Aminah Catering',
+            'customer_email' => 'siti@catering.com',
         ]);
 
-        $order = Order::where('customer_email', 'aditya@test.com')->latest()->first();
+        $order = Order::where('customer_email', 'siti@catering.com')->latest()->first();
         $response->assertRedirect(route('orders.show', $order->order_number));
     }
 

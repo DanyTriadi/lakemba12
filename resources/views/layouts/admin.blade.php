@@ -69,8 +69,8 @@
 
                 <a href="{{ route('admin.products') }}" 
                    class="flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-colors {{ request()->routeIs('admin.products*') ? 'bg-brand-500 text-white shadow' : 'text-stone-300 hover:bg-stone-800' }}">
-                    <i class="fa-solid fa-mug-hot w-5 text-center"></i>
-                    <span>Katalog Menu Kopi</span>
+                    <i class="fa-solid fa-boxes-stacked w-5 text-center"></i>
+                    <span>Katalog Plastik & Bahan</span>
                 </a>
 
                 <a href="{{ route('admin.messages') }}" 
